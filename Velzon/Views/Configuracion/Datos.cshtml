@@ -1,0 +1,1473 @@
+﻿@{
+    ViewBag.Title = "Datos";
+    ViewBag.pTitle = "Datos";
+    ViewBag.pageTitle = "Configuración";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <!--datatable css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+}
+
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="card">
+            <div class="card-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-border-top nav-border-top-primary nav-border-top nav-justified mb-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#datos-empresa" role="tab" aria-selected="false">
+                            Empresa
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#datos-filial" role="tab" aria-selected="false">
+                            Empresa filial
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#datos-mutual" role="tab" aria-selected="false">
+                            Mutual
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#datos-centro-trabajo" role="tab" aria-selected="false">
+                            Centro de trabajo
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#datos-trabajador" role="tab" aria-selected="true">
+                            Trabajador
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#datos-ciudad" role="tab" aria-selected="true">
+                            Ciudad
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#datos-cargo" role="tab" aria-selected="true">
+                            Cargo
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#datos-regimen-trabajo" role="tab" aria-selected="true">
+                            Régimen de trabajo
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="datos-empresa" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Empresas</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2 mb-3 d-md-flex justify-content-md-end">
+                                            <button class="btn btn-outline-success me-md-2" type="button">Excel</button>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-crear-empresa">Crear</button>
+                                        </div>
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ordering="false">RUT</th>
+                                                    <th data-ordering="false">Empresa</th>
+                                                    <th data-ordering="false">Dirección</th>
+                                                    <th data-ordering="false">Giro</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>6753719-k</td>
+                                                    <td>Constructora 1</td>
+                                                    <td>Av. Pajaritos 55 - Recoleta</td>
+                                                    <td>Constructora</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>15943970-4</td>
+                                                    <td>Entel</td>
+                                                    <td>Las Condes 15 - Las Condes</td>
+                                                    <td>Telecomunicaciones</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>20833673-8</td>
+                                                    <td>Movistar</td>
+                                                    <td>Baquedano 31 - Providencia</td>
+                                                    <td>Telecomunicaciones</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>33935315-8</td>
+                                                    <td>Claro</td>
+                                                    <td>El Cortijo 12 - Huechuraba</td>
+                                                    <td>Telecomunicaciones</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        <div class="col-xxl-6">
+                            <div class="modal fade" id="modal-crear-empresa" tabindex="-1" aria-labelledby="modalEmpresaLabel">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalEmpresaLabel">Crear Empresa</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="javascript:void(0);">
+                                                <div class="row g-3">
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="crearNombreEmpresa" class="form-label">Empresa</label>
+                                                            <input type="text" class="form-control" id="crearNombreEmpresa" placeholder="Introduzca empresa">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="crearEmpresaRut" class="form-label">RUT</label>
+                                                            <input type="text" class="form-control" id="crearEmpresaRut" placeholder="Introduzca RUT">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="crearRazonSocialEmpresa" class="form-label">Razón Social</label>
+                                                            <input type="text" class="form-control" id="crearRazonSocialEmpresa" placeholder="Introduzca razón social">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="crearGiroEmpresa" class="form-label">Giro</label>
+                                                            <input type="text" class="form-control" id="crearGiroEmpresa" placeholder="Introduzca giro">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="crearDirecciónEmpresa" class="form-label">Dirección</label>
+                                                            <input type="text" class="form-control" id="crearDirecciónEmpresa" placeholder="Introduzca dirección">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="form-check form-switch form-switch-md mb-3" dir="ltr">
+                                                                <input type="checkbox" class="form-check-input" id="switchActivoEmpresa">
+                                                                <label class="form-check-label" for="switchActivoEmpresa">¿Activo?</label>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="selectRegionEmpresa">Región</label>
+                                                        <select class="form-control" data-choices name="selectRegionEmpresa"
+                                                                id="selectRegionEmpresa">
+                                                            <option value="">Seleccione región</option>
+                                                            <option value="Choice 1">Región Metropolitana</option>
+                                                            <option value="Choice 2">Región del Bío Bío</option>
+                                                            <option value="Choice 3">Región de los Lagos</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="selectComunaEmpresa">Comuna</label>
+                                                        <select class="form-control" data-choices name="selectComunaEmpresa"
+                                                                id="selectComunaEmpresa">
+                                                            <option value="">Seleccione comuna</option>
+                                                            <option value="Choice 1">Las Condes</option>
+                                                            <option value="Choice 2">Concepción</option>
+                                                            <option value="Choice 3">Puerto Varas</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="selectCiudadEmpresa">Ciudad</label>
+                                                        <select class="form-control" data-choices name="selectCiudadEmpresa"
+                                                                id="selectCiudadEmpresa">
+                                                            <option value="">Seleccione ciudad</option>
+                                                            <option value="Choice 1">Las Condes</option>
+                                                            <option value="Choice 2">Concepción</option>
+                                                            <option value="Choice 3">Puerto Varas</option>
+                                                        </select>
+                                                    </div><!--end col-->  
+                                                    
+                                                    <div class="col-xxl-4">
+                                                        <label for="emailPrevencionista" class="form-label">Correo Electrónico Prevencionista</label>
+                                                        <input type="email" class="form-control" id="emailPrevencionista" placeholder="Introduzca correo electrónico">
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="telefonoPrevencionista" class="form-label">Teléfono Prevencionista</label>
+                                                            <input type="text" class="form-control" id="telefonoPrevencionista" placeholder="Introduzca teléfono">
+                                                        </div>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="selectOrgPreventiva">Tipo Organización Preventiva</label>
+                                                        <select class="form-control" data-choices name="selectOrgPreventiva"
+                                                                id="selectOrgPreventiva">
+                                                            <option value="">Seleccione organización</option>
+                                                            <option value="Choice 1">Trabajador Designado</option>
+                                                            <option value="Choice 2">Dpto. Prevención de Riesgo</option>
+                                                        </select>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="crearRelegalEmpresa" class="form-label">Representante Legal</label>
+                                                            <input type="text" class="form-control" id="crearRelegalEmpresa" placeholder="Introduzca representante">
+                                                        </div>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="crearRutRelegalEmpresa" class="form-label">RUT Representante Legal</label>
+                                                            <input type="text" class="form-control" id="crearRutRelegalEmpresa" placeholder="Introduzca rut representante">
+                                                        </div>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="crearNTrabajadoresEmpresa" class="form-label">Número de Trabajadores</label>
+                                                            <input type="number" class="form-control" id="crearNTrabajadoresEmpresa" placeholder="Introduzca número de trabajadores">
+                                                        </div>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="selectMutualEmpresa">Mutual</label>
+                                                        <select class="form-control" data-choices name="selectMutualEmpresa"
+                                                                id="selectMutualEmpresa">
+                                                            <option value="">Seleccione mutual</option>
+                                                            <option value="Choice 1">Mutual 1</option>
+                                                            <option value="Choice 2">Mutual 2</option>
+                                                            <option value="Choice 3">Mutual 3</option>
+                                                        </select>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="responsableMutualEmpresa" class="form-label">Nombre Responsable</label>
+                                                            <input type="text" class="form-control" id="responsableMutualEmpresa" placeholder="Introduzca responsable">
+                                                        </div>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="rutResponsableMutualEmpresa" class="form-label">RUT Responsable</label>
+                                                            <input type="text" class="form-control" id="rutResponsableMutualEmpresa" placeholder="Introduzca rut">
+                                                        </div>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-8">
+                                                        <label for="emailResMutualEmpresa" class="form-label">Correo Electrónico Responsable</label>
+                                                        <input type="email" class="form-control" id="emailResMutualEmpresa" placeholder="Introduzca correo electrónico">
+                                                    </div><!--end col-->
+
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="telefonoResMutualEmpresa" class="form-label">Teléfono Responsable</label>
+                                                            <input type="text" class="form-control" id="telefonoResMutualEmpresa" placeholder="Introduzca teléfono">
+                                                        </div>
+                                                    </div><!--end col-->
+
+                                                    <div class="col-lg-12">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="datos-filial" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Empresas filiales</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2 mb-3 d-md-flex justify-content-md-end">
+                                            <button class="btn btn-outline-success me-md-2" type="button">Excel</button>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-crear-filial">Crear</button>
+                                        </div>
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ordering="false">RUT Empresa Principal</th>
+                                                    <th data-ordering="false">Empresa Principal</th>
+                                                    <th data-ordering="false">RUT Filial</th>
+                                                    <th data-ordering="false">Empresa Filial</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>6753719-k</td>
+                                                    <td>Empresa principal</td>
+                                                    <td>Sub contratista 1</td>
+                                                    <td>77876880-1</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>6753719-k</td>
+                                                    <td>Empresa principal</td>
+                                                    <td>Sub contratista 2</td>
+                                                    <td>79541990-k</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>6753719-k</td>
+                                                    <td>Empresa principal</td>
+                                                    <td>Sub contratista 3</td>
+                                                    <td>80203440-3</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>6753719-k</td>
+                                                    <td>Empresa principal</td>
+                                                    <td>Sub contratista 4</td>
+                                                    <td>78984373-8</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        <div class="col-xxl-6">
+                            <div class="modal fade" id="modal-crear-filial" tabindex="-1" aria-labelledby="modalFilialLabel">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalFilialLabel">Crear Empresa Filial</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="javascript:void(0);">
+                                                <div class="row g-3">
+                                                    <div class="col-xxl-6">
+                                                        <label class="form-label" for="selectEmpresaPrincipal">Empresa Principal</label>
+                                                        <select class="form-control" data-choices name="selectEmpresaPrincipal"
+                                                                id="selectEmpresaPrincipal">
+                                                            <option value="">Seleccione empresa</option>
+                                                            <option value="Choice 1">Hidalgo Inversiones SpA</option>
+                                                            <option value="Choice 2">Sociedad Inversiones SpA</option>
+                                                            <option value="Choice 3">Empresa Ficticia SpA</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="selectRutEmpresaPrincipal" class="form-label">RUT Empresa Principal</label>
+                                                            <input type="text" class="form-control" id="selectRutEmpresaPrincipal" placeholder="Introduzca RUT">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearEmpresaFilial" class="form-label">Empresa Filial</label>
+                                                            <input type="text" class="form-control" id="crearEmpresaFilial" placeholder="Introduzca nombres">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearRutEmpresaFilial" class="form-label">RUT Empresa Filial</label>
+                                                            <input type="text" class="form-control" id="crearRutEmpresaFilial" placeholder="Introduzca RUT">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearReLegal" class="form-label">Representante Legal</label>
+                                                            <input type="text" class="form-control" id="crearReLegal" placeholder="Introduzca representante">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearRutReLegal" class="form-label">RUT Representante Legal</label>
+                                                            <input type="text" class="form-control" id="crearRutReLegal" placeholder="Introduzca RUT">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="datos-mutual" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Mutuales</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2 mb-3 d-md-flex justify-content-md-end">
+                                            <button class="btn btn-outline-success me-md-2" type="button">Excel</button>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-crear-mutual">Crear</button>
+                                        </div>
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ordering="false">RUT</th>
+                                                    <th data-ordering="false">Empresa</th>
+                                                    <th data-ordering="false">Dirección</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>70360100-6</td>
+                                                    <td>Asociación Chilena de Seguridad</td>
+                                                    <td>Ramón Carnicer N° 163, Providencia.</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>60355100-6</td>
+                                                    <td>Mutual de Seguridad</td>
+                                                    <td>Dirección 1</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>57355190-6</td>
+                                                    <td>Instituto de Seguridad del Trabajo</td>
+                                                    <td>Dirección 2</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        <div class="col-xxl-6">
+                            <div class="modal fade" id="modal-crear-mutual" tabindex="-1" aria-labelledby="modalMutualLabel">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalMutualLabel">Crear Mutual</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="javascript:void(0);">
+                                                <div class="row g-3">
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearRutMutual" class="form-label">RUT</label>
+                                                            <input type="text" class="form-control" id="crearRutMutual" placeholder="Introduzca RUT">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearRazonSocial" class="form-label">Razón Social</label>
+                                                            <input type="text" class="form-control" id="crearRazonSocial" placeholder="Introduzca razón social">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearGiro" class="form-label">Giro</label>
+                                                            <input type="text" class="form-control" id="crearGiro" placeholder="Introduzca giro">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearDirecciónMutual" class="form-label">Dirección</label>
+                                                            <input type="text" class="form-control" id="crearDirecciónMutual" placeholder="Introduzca dirección">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <label class="form-label" for="selectRegionMutual">Región</label>
+                                                        <select class="form-control" data-choices name="selectRegionMutual"
+                                                                id="selectRegionMutual">
+                                                            <option value="">Seleccione región</option>
+                                                            <option value="Choice 1">Región Metropolitana</option>
+                                                            <option value="Choice 2">Región del Bío Bío</option>
+                                                            <option value="Choice 3">Región de los Lagos</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <label class="form-label" for="selectComunaMutual">Comuna</label>
+                                                        <select class="form-control" data-choices name="selectComunaMutual"
+                                                                id="selectComunaMutual">
+                                                            <option value="">Seleccione comuna</option>
+                                                            <option value="Choice 1">Las Condes</option>
+                                                            <option value="Choice 2">Concepción</option>
+                                                            <option value="Choice 3">Puerto Varas</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <label class="form-label" for="selectCiudadMutual">Ciudad</label>
+                                                        <select class="form-control" data-choices name="selectCiudadMutual"
+                                                                id="selectCiudadMutual">
+                                                            <option value="">Seleccione ciudad</option>
+                                                            <option value="Choice 1">Las Condes</option>
+                                                            <option value="Choice 2">Concepción</option>
+                                                            <option value="Choice 3">Puerto Varas</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearTeléfonoMutual" class="form-label">Teléfono</label>
+                                                            <input type="text" class="form-control" id="crearTeléfonoMutual" placeholder="Introduzca teléfono">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="datos-centro-trabajo" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Centros de Trabajo</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2 mb-3 d-md-flex justify-content-md-end">
+                                            <button class="btn btn-outline-success me-md-2" type="button">Excel</button>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-crear-centro">Crear</button>
+                                        </div>
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ordering="false">Identificador</th>
+                                                    <th data-ordering="false">Centro de trabajo</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Planta Maipú</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Oficina Central</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Faena Copiapó</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        <div class="col-xxl-6">
+                            <div id="modal-crear-centro" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalgridLabel">Crear Centro de Trabajo</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="javascript:void(0);">
+                                                <div class="row g-3">
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearCentro" class="form-label">Centro de trabajo</label>
+                                                            <input type="text" class="form-control" id="crearCentro" placeholder="Introduzca el centro de trabajo">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="datos-trabajador" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Trabajadores</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2 mb-3 d-md-flex justify-content-md-end">
+                                            <button class="btn btn-outline-success me-md-2" type="button">Excel</button>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-crear-trabajador">Crear</button>
+                                        </div>
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ordering="false">RUT</th>
+                                                    <th data-ordering="false">Nombre</th>
+                                                    <th data-ordering="false">Sexo</th>
+                                                    <th data-ordering="false">Empresa</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>6753719-k</td>
+                                                    <td>Cecilia Bolocco</td>
+                                                    <td>Femenino</td>
+                                                    <td>Entel</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        <div class="col-xxl-6">
+                            <div class="modal fade" id="modal-crear-trabajador" tabindex="-1" aria-labelledby="modalTrabajadorLabel">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTrabajadorLabel">Crear Trabajador</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="javascript:void(0);">
+                                                <div class="row g-3">
+                                                    <div class="col-xxl-6">
+                                                        <label class="form-label" for="crearTrabajadorEmpresa">Empresa</label>
+                                                        <select class="form-control" data-choices name="crearTrabajadorEmpresa"
+                                                                id="crearTrabajadorEmpresa">
+                                                            <option value="">Seleccione una empresa</option>
+                                                            <option value="Choice 1">Hidalgo Inversiones SpA</option>
+                                                            <option value="Choice 2">Sociedad Inversiones SpA</option>
+                                                            <option value="Choice 3">Empresa Ficticia SpA</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearTrabajadorRut" class="form-label">RUT</label>
+                                                            <input type="text" class="form-control" id="crearTrabajadorRut" placeholder="Introduzca RUT">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="nombres" class="form-label">Nombres</label>
+                                                            <input type="text" class="form-control" id="nombres" placeholder="Introduzca nombres">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+                                                            <input type="text" class="form-control" id="apellidoPaterno" placeholder="Introduzca apellido">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+                                                            <input type="text" class="form-control" id="apellidoMaterno" placeholder="Introduzca apellido">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <label class="form-label">Sexo</label>
+                                                        <div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="hombreRadio" value="option1">
+                                                                <label class="form-check-label" for="hombreRadio">Hombre</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="mujerRadio" value="option2">
+                                                                <label class="form-check-label" for="mujerRadio">Mujer</label>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-8">
+                                                        <label for="direccionTrabajador" class="form-label">Dirección</label>
+                                                        <input type="text" class="form-control" id="direccionTrabajador" placeholder="Introduzca la dirección">
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="ciudadTrabajador">Ciudad</label>
+                                                        <select class="form-control" data-choices name="ciudadTrabajador"
+                                                                id="ciudadTrabajador">
+                                                            <option value="">Seleccione una ciudad</option>
+                                                            <option value="Choice 1">Santiago</option>
+                                                            <option value="Choice 2">Temuco</option>
+                                                            <option value="Choice 3">Valdivia</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-8">
+                                                        <label for="emailTrabajador" class="form-label">Correo Electrónico</label>
+                                                        <input type="email" class="form-control" id="emailTrabajador" placeholder="Introduzca correo electrónico">
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <div>
+                                                            <label for="telefonoTrabajador" class="form-label">Teléfono</label>
+                                                            <input type="text" class="form-control" id="telefonoTrabajador" placeholder="Introduzca teléfono">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="contratoTrabajador">Tipo de Contrato</label>
+                                                        <select class="form-control" data-choices name="contratoTrabajador"
+                                                                id="contratoTrabajador">
+                                                            <option value="">Seleccione contrato</option>
+                                                            <option value="Choice 1">Santiago</option>
+                                                            <option value="Choice 2">Temuco</option>
+                                                            <option value="Choice 3">Valdivia</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="centroTrabajoTrabajador">Centro de Trabajo</label>
+                                                        <select class="form-control" data-choices name="centroTrabajoTrabajador"
+                                                                id="centroTrabajoTrabajador">
+                                                            <option value="">Seleccione centro</option>
+                                                            <option value="Choice 1">Santiago</option>
+                                                            <option value="Choice 2">Temuco</option>
+                                                            <option value="Choice 3">Valdivia</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="cargoTrabajador">Cargo</label>
+                                                        <select class="form-control" data-choices name="cargoTrabajador"
+                                                                id="cargoTrabajador">
+                                                            <option value="">Seleccione cargo</option>
+                                                            <option value="Choice 1">Santiago</option>
+                                                            <option value="Choice 2">Temuco</option>
+                                                            <option value="Choice 3">Valdivia</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="incorporacionTrabajador">Fecha de Incorporación</label>
+                                                        <input type="date" class="form-control" id="incorporacionTrabajador">
+                                                    </div><!--end col-->
+                                                    <div class="col-xxl-4">
+                                                        <label class="form-label" for="regimenTrabajador">Régimen de Trabajo</label>
+                                                        <select class="form-control" data-choices name="regimenTrabajador"
+                                                                id="regimenTrabajador">
+                                                            <option value="">Seleccione régimen</option>
+                                                            <option value="Choice 1">Santiago</option>
+                                                            <option value="Choice 2">Temuco</option>
+                                                            <option value="Choice 3">Valdivia</option>
+                                                        </select>
+                                                    </div><!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="datos-ciudad" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Ciudades</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2 mb-3 d-md-flex justify-content-md-end">
+                                            <button class="btn btn-outline-success me-md-2" type="button">Excel</button>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-crear-ciudad">Crear</button>
+                                        </div>
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ordering="false">Identificador</th>
+                                                    <th data-ordering="false">Ciudad</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Santiago</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Concepción</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Temuco</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        <div class="col-xxl-6">
+                            <div id="modal-crear-ciudad" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalgridLabel">Crear Ciudad</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="javascript:void(0);">
+                                                <div class="row g-3">
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearCiudad" class="form-label">Ciudad</label>
+                                                            <input type="text" class="form-control" id="crearCiudad" placeholder="Introduzca la ciudad">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="datos-cargo" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Cargo</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2 mb-3 d-md-flex justify-content-md-end">
+                                            <button class="btn btn-outline-success me-md-2" type="button">Excel</button>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-crear-cargo">Crear</button>
+                                        </div>
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ordering="false">Identificador</th>
+                                                    <th data-ordering="false">Cargo</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Gerente General</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Administrativo</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Contador</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        <div class="col-xxl-6">
+                            <div id="modal-crear-cargo" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Crear Cargo de Trabajo</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="javascript:void(0);">
+                                                <div class="row g-3">
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearCargo" class="form-label">Cargo</label>
+                                                            <input type="text" class="form-control" id="crearCargo" placeholder="Introduzca el cargo">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="datos-regimen-trabajo" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Régimen de Trabajo</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-grid gap-2 mb-3 d-md-flex justify-content-md-end">
+                                            <button class="btn btn-outline-success me-md-2" type="button">Excel</button>
+                                            <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal-crear-regimen">Crear</button>
+                                        </div>
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ordering="false">Identificador</th>
+                                                    <th data-ordering="false">Régimen</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Turno</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Art. 22</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Teletrabajo</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                        <div class="col-xxl-6">
+                            <div id="modal-crear-regimen" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Crear Régimen de Trabajo</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="javascript:void(0);">
+                                                <div class="row g-3">
+                                                    <div class="col-xxl-6">
+                                                        <div>
+                                                            <label for="crearRegimen" class="form-label">Régimen</label>
+                                                            <input type="text" class="form-control" id="crearRegimen" placeholder="Introduzca el régimen">
+                                                        </div>
+                                                    </div><!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Crear</button>
+                                                        </div>
+                                                    </div><!--end col-->
+                                                </div><!--end row-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end card-body -->
+        </div>
+    </div><!--end col-->
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- multi.js -->
+    <script src="~/assets/libs/multi.js/multi.min.js"></script>
+    <!-- autocomplete js -->
+    <script src="~/assets/libs/@@tarekraafat/autocomplete.js/autoComplete.min.js"></script>
+
+    <!-- init js -->
+    <script src="~/assets/js/pages/form-advanced.init.js"></script>
+    <!-- input spin init -->
+    <script src="~/assets/js/pages/form-input-spin.init.js"></script>
+    <!-- input flag init -->
+    <script src="~/assets/js/pages/flag-input.init.js"></script>
+
+    <!--datatable js-->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+    <script src="~/assets/js/pages/datatables.init.js"></script>
+
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+}

@@ -1,0 +1,166 @@
+﻿<!-- ========== App Menu ========== -->
+<div class="app-menu navbar-menu">
+    <!-- LOGO -->
+    <div class="navbar-brand-box">
+        <!-- Dark Logo-->
+        <a href="@Url.Action("Inicio", "Dashboard")" class="logo logo-dark mt-3">
+            <span class="logo-sm">
+                <img src="~/assets/images/logo-sga-verde.png" alt="" height="45">
+            </span>
+            <span class="logo-lg">
+                <img src="~/assets/images/logo-sga.png" alt="" height="65">
+            </span>
+        </a>
+        
+        <!-- Light Logo-->
+        <a href="@Url.Action("Inicio", "Dashboard")" class="logo logo-light mt-3">
+            <span class="logo-sm">
+                <img src="~/assets/images/logo-sga-verde.png" alt="" height="45">
+            </span>
+            <span class="logo-lg">
+                <img src="~/assets/images/logo-sga.png" alt="" height="65">
+            </span>
+        </a>
+
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+            <i class="ri-record-circle-line"></i>
+        </button>
+    </div>
+
+    <div id="scrollbar">
+        <div class="container-fluid">
+
+            <div id="two-column-menu">
+            </div>
+            <ul class="navbar-nav" id="navbar-nav">
+                <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarDashboards">
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarDashboards">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="@Url.Action("Inicio", "Dashboard")" class="nav-link">Inicio</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> <!-- end Dashboard Menu -->
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarPages">
+                        <i class="ri-pages-line"></i> <span data-key="t-pages">Accidentes</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarPages">
+                        <div class="menu-dropdown">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("IngresarAccidente", "Accidentes")" class="nav-link" data-key="t-accidente">Ingresar Accidente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Resumen", "Accidentes")" class="nav-link">Resumen de Accidentes</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarForms" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarForms">
+                        <i class="ri-pie-chart-2-fill"></i> <span data-key="t-forms">Reportes</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarForms">
+                        <ul class="nav nav-sm flex-column">                          
+                            <li class="nav-item">
+                                <a href="@Url.Action("Informes", "Reportes")" class="nav-link">Informes de Accidentes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Estadisticas", "Reportes")" class="nav-link">Informes de Estadísticas</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-title mt-2"><span data-key="t-datos">Datos</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarAgrupacion1" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarAgrupacion1">
+                        <i class="ri-building-2-fill"></i> <span data-key="t-agrupacion1">Empresas</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarAgrupacion1">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="@Url.Action("Empresa", "Datos")" class="nav-link" data-key="t-empresa-datos">Empresa Principal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("EmpresaFilial", "Datos")" class="nav-link" data-key="t-empresa-filial-datos">Empresa Filial</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Mutual", "Datos")" class="nav-link" data-key="t-mutual-datos">Mutual</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("CentroTrabajo", "Datos")" class="nav-link" data-key="t-centro-trabajo-datos">Centro de Trabajo</a>
+                            </li>                           
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarAgrupacion3" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarAgrupacion3">
+                        <i class="ri-user-add-fill"></i> <span data-key="t-agrupacion3">Trabajadores</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarAgrupacion3">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="@Url.Action("Trabajador", "Datos")" class="nav-link" data-key="t-trabajador-datos">Trabajador</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Contrato", "Datos")" class="nav-link" data-key="t-contrato-datos">Contrato</a>
+                            </li>                           
+                            <li class="nav-item">
+                                <a href="@Url.Action("Cargo", "Datos")" class="nav-link" data-key="t-cargo-datos">Cargo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("RegimenTrabajo", "Datos")" class="nav-link" data-key="t-regimen-trabajo-datos">Régimen de Trabajo</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-title mt-2"><span data-key="t-usuario">Usuario</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarTables">
+                        <i class="ri-settings-3-fill"></i> <span data-key="t-tables">Configuración</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarTables">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="@Url.Action("CrearUsuario", "Configuracion")" class="nav-link" data-key="t-crear-usuario">Crear Usuario</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Perfil", "Configuracion")" class="nav-link" data-key="t-perfil">Perfil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("DIAT", "Configuracion")" class="nav-link" data-key="t-diat">DIAT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("TiempoGraveFatal", "Configuracion")" class="nav-link" data-key="t-tiempo">Tiempo Accidente Grave-Fatal</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+    <div class="sidebar-background"></div>
+</div>
+<!-- Left Sidebar End -->
+<!-- Vertical Overlay-->
+<div class="vertical-overlay"></div>

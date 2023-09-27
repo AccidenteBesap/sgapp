@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Informes de Estadísticas";
+    ViewBag.pTitle = "Informes de Estadísticas";
+    ViewBag.pageTitle = "Reportes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <!--datatable css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+}
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-auto">
+                    <div class="mb-2">
+                        <label for="selectEmpresaEstadistica" class="form-label">Empresa</label>
+                        <select class="form-control" data-choices name="selectEmpresaEstadistica"
+                                id="selectEmpresaEstadistica">
+                            <option value="">Seleccione empresa</option>
+                            <option value="Choice 1">Sociedad de Construcción SpA</option>
+                            <option value="Choice 2">Empresa 2 SpA</option>
+                            <option value="Choice 3">Empresa 3 SpA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-auto">
+                    <div class="mb-2">
+                        <label for="selectCentroEstadistica" class="form-label">Centro de Trabajo</label>
+                        <select class="form-control" data-choices name="selectCentroEstadistica"
+                                id="selectCentroEstadistica">
+                            <option value="">Seleccione centro</option>
+                            <option value="Choice 1">Obra Estación Central</option>
+                            <option value="Choice 2">Centro 2</option>
+                            <option value="Choice 3">Centro 3</option>
+                            <option value="Todos">Todos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-auto">
+                    <div class="mb-2">
+                        <label for="selectCargoEstadistica" class="form-label">Cargo</label>
+                        <select class="form-control" data-choices name="selectCargoEstadistica"
+                                id="selectCargoEstadistica">
+                            <option value="">Seleccione cargo</option>
+                            <option value="Choice 1">Operario Producción</option>
+                            <option value="Choice 2">Cargo 2</option>
+                            <option value="Choice 3">Cargo 3</option>
+                            <option value="Todos">Todos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-auto">
+                    <div class="mb-2">
+                        <label for="selectAccidenteEstadistica" class="form-label">Tipo de Accidente</label>
+                        <select class="form-control" data-choices data-choices-search-false name="selectAccidenteEstadistica"
+                                id="selectAccidenteEstadistica">
+                            <option value="">Seleccione accidente</option>
+                            <option value="Choice 1">Accidente CTP</option>
+                            <option value="Choice 2">Accidente STP</option>
+                            <option value="Choice 3">Cuasi Accidente</option>
+                            <option value="Choice 4">Accidente Grave</option>
+                            <option value="Choice 5">Accidente Fatal</option>
+                            <option value="Todos">Todos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-auto">
+                    <div class="mb-2">
+                        <label for="selectLesionInforme" class="form-label">Tipo de Lesión</label>
+                        <select class="form-control" data-choices name="selectLesionInforme"
+                                id="selectLesionInforme">
+                            <option value="">Seleccione lesión</option>
+                            <option value="Choice 1">Lesión 1</option>
+                            <option value="Choice 2">Lesión 2</option>
+                            <option value="Choice 3">Lesión 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-auto">
+                    <div class="mb-2">
+                        <label class="form-label" for="selectPeriodoInforme">Periodo</label>
+                        <select class="form-select" data-choices data-choices-search-false id="selectPeriodoInforme">
+                            <option value="">Seleccione periodo</option>
+                            <option value="1">2023</option>
+                            <option value="2">2022</option>
+                            <option value="3">2021</option>
+                        </select>
+                    </div>
+                </div><!--end col-->
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="text-end">
+                <button id="buscarInformeBtn" class="btn btn-primary">Buscar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title mb-0">Gráfico de accidentes</h4>
+        </div><!-- end card header -->
+
+        <div class="card-body">
+            <div id="column_chart_accidente" data-colors='["--vz-danger", "--vz-primary", "--vz-success", "--vz-warning", "--vz-info"]' class="apex-charts" dir="ltr"></div>
+        </div><!-- end card-body -->
+    </div><!-- end card -->
+</div>
+<!-- end col -->
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!--datatable js-->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+    <!-- apexcharts -->
+    <script src="~/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/dayjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/plugin/quarterOfYear.min.js"></script>
+
+    <!-- apexcharts init -->
+    <script src="~/assets/js/pages/apexcharts-column.init.js"></script>
+
+    <script src="~/assets/js/pages/datatables.init.js"></script>
+
+    <!-- multi.js -->
+    <script src="~/assets/libs/multi.js/multi.min.js"></script>
+    <!-- autocomplete js -->
+    <script src="~/assets/libs/@@tarekraafat/autocomplete.js/autoComplete.min.js"></script>
+
+    <!-- init js -->
+    <script src="~/assets/js/pages/form-advanced.init.js"></script>
+    <!-- input spin init -->
+    <script src="~/assets/js/pages/form-input-spin.init.js"></script>
+    <!-- input flag init -->
+    <script src="~/assets/js/pages/flag-input.init.js"></script>
+
+    <!-- dropzone min -->
+    <script src="~/assets/libs/dropzone/dropzone-min.js"></script>
+    <!-- filepond js -->
+    <script src="~/assets/libs/filepond/filepond.min.js"></script>
+    <script src="~/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+    <script src="~/assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="~/assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="~/assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+
+    <script src="~/assets/js/pages/form-file-upload.init.js"></script>
+
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+}

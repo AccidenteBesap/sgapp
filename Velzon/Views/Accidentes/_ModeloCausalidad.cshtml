@@ -1,0 +1,869 @@
+﻿<div class="card">
+    <div class="card-header">
+        <h4 class="card-title mb-0">Paso 2 - Modelo Causalidad</h4>
+    </div><!-- end card header -->
+
+    <div class="card-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-pills mb-3" role="tablist">
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link active" data-bs-toggle="tab" href="#pill-justified-accidentado" role="tab">
+                    Accidentado
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-antecedentes" role="tab">
+                    Antecedentes
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-clasificacion" role="tab">
+                    Clasificación
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-hechos" role="tab">
+                    Hechos
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-investigacion" role="tab">
+                    Investigación
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-medidas" role="tab">
+                    Medidas Correctivas
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#pill-justified-finalizar" role="tab">
+                    Finalizar
+                </a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="pill-justified-accidentado" role="tabpanel">
+                <div class="row g-3">
+                    <h6 class="mt-4">Información del accidentado</h6>
+                    <hr class="mt-0 mb-1" />
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="inputGroupSelect01">Empresa</label>
+                                    <select class="form-select" id="inputGroupSelect01">
+                                        <option selected>Selecciona...</option>
+                                        <option value="1">Hidalgo Inversiones SpA</option>
+                                        <option value="2">Sociedad Inversiones SpA</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="input-group">
+                                <label class="input-group-text" for="inputGroupSelect01">Trabajador</label>
+                                <select class="form-select" id="inputGroupSelect01">
+                                    <option selected>Selecciona...</option>
+                                    <option value="1">Cecilia Bolocco</option>
+                                    <option value="2">Jane Doe</option>
+                                    <option value="3">John Doe</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="input-group">
+                                <label class="input-group-text" for="inputGroupSelect01">RUT</label>
+                                <input type="text" class="form-control"
+                                       aria-label="Sizing example input"
+                                       aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="input-group">
+                                <label class="input-group-text" for="inputGroupSelect01">Cargo</label>
+                                <input type="text" class="form-control"
+                                       aria-label="Sizing example input"
+                                       aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="input-group">
+                                <label class="input-group-text" for="inputGroupSelect01">Centro de Trabajo</label>
+                                <input type="text" class="form-control"
+                                       aria-label="Sizing example input"
+                                       aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="input-group">
+                                <label class="input-group-text">Fecha de Ingreso</label>
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div>
+                                <label for="supervisorTextArea" class="form-label">
+                                    Supervisor directo
+                                </label>
+                                <textarea class="form-control" id="supervisorTextArea"
+                                          rows="1"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-3">
+                    <h6 class="mt-4">Información del accidente</h6>
+                    <hr class="mt-0 mb-1" />
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo Accidente</label>
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Seleccionar Accidente</option>
+                                <option value="1">Cecilia Bolocco</option>
+                                <option value="2">Jane Doe</option>
+                                <option value="3">John Doe</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Fecha</span>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <span class="input-group-text">Hora</span>
+                            <input type="time" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div>
+                            <label for="lugarTextArea" class="form-label">
+                                Lugar del accidente
+                            </label>
+                            <textarea class="form-control" id="lugarTextArea"
+                                      rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div>
+                            <label for="lugarTextArea" class="form-label">
+                                Consecuencia del accidente
+                            </label>
+                            <textarea class="form-control" id="lugarTextArea"
+                                      rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-3" id="columnaFatal">
+                    <h6 class="mt-4">Adjuntar Documentos</h6>
+                    <hr class="mt-0 mb-1" />
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label class="form-label" for="subirFNotificacion">Formulario de Notificación</label>
+                            <a class="btn btn-outline-primary" href="https://www.isl.gob.cl/wp-content/uploads/2018/08/Formulario_Notificacion_Accidente_Fatal_y_Grave.pdf" role="button">Descargar Formulario</a>
+                        </div>
+                        
+                        <div id="subirFNotificacion" class="card">
+                            <div class="card-body">
+                                <input type="file"
+                                       class="filepond filepond-input-multiple"
+                                       multiple
+                                       name="filepond"
+                                       data-allow-reorder="true"
+                                       data-max-file-size="3MB"
+                                       data-max-files="4">
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label class="form-label" for="subirDiat">DIAT</label>
+                            <a class="btn btn-outline-primary" href="https://www.isl.gob.cl/wp-content/uploads/2011/03/DIAT.pdf" role="button">Descargar DIAT</a>
+                        </div>
+                        
+                        <div id="subirDiat" class="card">
+                            <div class="card-body">
+                                <input type="file"
+                                       class="filepond filepond-input-multiple"
+                                       multiple
+                                       name="filepond"
+                                       data-allow-reorder="true"
+                                       data-max-file-size="3MB"
+                                       data-max-files="4">
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-3">
+                    <button class="btn btn-success">Grabar</button>
+                </div>
+            </div>
+            <div class="tab-pane" id="pill-justified-antecedentes" role="tabpanel">
+                <form>
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <div class="input-group">
+                                <label class="input-group-text" for="inputGroupSelect01">Entrevistado</label>
+                                <select class="form-select" id="inputGroupSelect01">
+                                    <option selected>Selecciona...</option>
+                                    <option value="1">Roberto Uribe Torres</option>
+                                    <option value="2">Juan Pérez</option>
+                                    <option value="3">María González</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="input-group">
+                                <span class="input-group-text">Fecha Entrevista</span>
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label class="form-label" for="docsTextarea">Documentación Revisada, Procedimientos y/o instructivos</label>
+                            <textarea class="form-control" id="docsTextarea"
+                                      rows="2"></textarea>
+                        </div>
+                        <div class="col-lg-12">
+                            <div>
+                                <label for="lugarTextArea" class="form-label">¿Cómo ocurrió el accidente? (Labor específica que se ejecutaba)</label>
+                                <textarea class="form-control" id="lugarTextArea"
+                                          rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="subirDocsAntecedentes" class="form-label">
+                                Entrevista
+                            </label>
+                            <div id="subirDocsAntecedentes">
+                                <div class="card-body">
+                                    <input type="file"
+                                           class="filepond filepond-input-multiple"
+                                           multiple
+                                           name="filepond"
+                                           data-allow-reorder="true"
+                                           data-max-file-size="3MB"
+                                           data-max-files="4">
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-3">
+                            <button class="btn btn-success">Agregar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row mt-4">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Resumen Entrevistas</h4>
+                            </div><!-- end card header -->
+
+                            <div class="card-body">
+
+                                <div class="live-preview">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped-columns table-hover table-nowrap align-middle mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Entrevistado</th>
+                                                    <th scope="col">Fecha</th>
+                                                    <th scope="col">Doc. Revisada</th>
+                                                    <th scope="col">Doc. Adjuntos</th>
+                                                    <th scope="col">¿Cómo ocurrió el accidente?</th>
+                                                    <th scope="col">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Roberto Uribe Torres</td>
+                                                    <td>18/05/2023</td>
+                                                    <td>
+                                                        - Documento Procedimiento Administrativo<br>
+                                                        - Manual Accidentes
+                                                    </td>
+                                                    <td>Entrevista Roberto Uribe.docx</td>
+                                                    <td>Funciones acordes al trabajo, se cae en la escalera segundo piso</td>
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="ri-more-fill align-middle"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                                <li>
+                                                                    <a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Editar</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item remove-item-btn">
+                                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>Eliminar
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!-- end card-body -->
+                        </div><!-- end card -->
+                    </div>
+                    <!-- end col -->
+                </div>
+
+                <div class="d-flex justify-content-end mt-3">
+                    <button class="btn btn-success">Grabar</button>
+                </div>
+            </div>
+            <div class="tab-pane" id="pill-justified-clasificacion" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6>Clasificación de Accidente</h6>
+
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clasificacion-accidente-modal">Buscar</button>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <textarea class="form-control" id="areaTipoIncidente"
+                                              rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div>
+                                    <label for="obsTipoIncidente" class="form-label">
+                                        Observación
+                                    </label>
+                                    <textarea class="form-control" id="obsTipoIncidente"
+                                              rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--end col-->
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6>Tipo de Lesión</h6>
+
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tipo-lesion-modal">Buscar</button>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <textarea class="form-control" id="areaTipoLesion"
+                                              rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div>
+                                    <label for="obsTipoLesion" class="form-label">
+                                        Observación
+                                    </label>
+                                    <textarea class="form-control" id="obsTipoLesion"
+                                              rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--end col-->
+                    <div class="col-lg-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6>Parte Lesionada</h6>
+
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#parte-lesionada-modal">Buscar</button>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <textarea class="form-control" id="areaParteLesion"
+                                              rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div>
+                                    <label for="obsParteLesion" class="form-label">
+                                        Observación
+                                    </label>
+                                    <textarea class="form-control" id="obsParteLesion"
+                                              rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!--end col-->
+                    <div class="d-flex justify-content-end mt-3">
+                        <button class="btn btn-success">Grabar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="pill-justified-hechos" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div>
+                            <label for="hechosInput" class="form-label">Ingrese los hechos en orden cronológico</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="hechosInput"
+                                       aria-label="Recipient's username with two button addons">
+                                <button class="btn btn-success" type="button">Agregar +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Lista de Hechos</h4>
+                            </div><!-- end card header -->
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered align-middle table-nowrap mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col">Número</th>
+                                                <th scope="col">Descripción del hecho</th>
+                                                <th scope="col">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="fw-medium">01</td>
+                                                <td>Se cae por la escalera porque el escalón estaba suelto</td>
+                                                <td>
+                                                    <div class="hstack gap-3 fs-15">
+                                                        <button class="btn btn-success btn-sm"><i class="ri-edit-line"></i></button>
+                                                        <button class="btn btn-danger btn-sm"><i class="ri-delete-bin-5-line"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-medium">02</td>
+                                                <td>Se golpea la cabeza al caer al suelo</td>
+                                                <td>
+                                                    <div class="hstack gap-3 fs-15">
+                                                        <button class="btn btn-success btn-sm"><i class="ri-edit-line"></i></button>
+                                                        <button class="btn btn-danger btn-sm"><i class="ri-delete-bin-5-line"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- end card-body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="d-flex justify-content-end mt-3">
+                        <button class="btn btn-success">Grabar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="pill-justified-investigacion" role="tabpanel">
+                <ul class="nav nav-pills mb-3" role="tablist">
+                    <li class="nav-item waves-effect waves-light">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#pill-justified-causalidad" role="tab">
+                            Cadena Causal
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="pill-justified-causalidad" role="tabpanel">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div>
+                                                    <label for="FactoresOrgTextArea" class="form-label">
+                                                        Falta de Control
+                                                    </label>
+                                                    <textarea class="form-control" id="FactoresOrgTextArea"
+                                                              rows="13"></textarea>
+                                                </div>
+                                            </div> <!-- end col -->
+                                            <div class="col">
+                                                <div>
+                                                    <label for="CausasBasicasTextArea" class="form-label">
+                                                        Causas Básicas
+                                                    </label>
+                                                    <h6>Factores Personales</h6>
+                                                    <textarea class="form-control" id="factoresPersonalesTextArea"
+                                                              rows="4"></textarea>
+                                                    <h6 class="mt-2">Factores del Trabajo</h6>
+                                                    <textarea class="form-control" id="factoresTrabajoTextArea"
+                                                              rows="4"></textarea>
+                                                </div>
+                                            </div> <!-- end col -->
+                                            <div class="col">
+                                                <div>
+                                                    <label class="form-label">
+                                                        Causas Inmediatas
+                                                    </label>
+                                                    <h6>Actos Inseguros</h6>
+                                                    <textarea class="form-control" id="actosInsegurosTextArea"
+                                                              rows="4"></textarea>
+                                                    <h6 class="mt-2">Condiciones Inseguras</h6>
+                                                    <textarea class="form-control" id="condicionesInsegurasTextArea"
+                                                              rows="4"></textarea>
+                                                </div>
+                                            </div> <!-- end col -->
+                                            <div class="col">
+                                                <div>
+                                                    <div class="col-md-12 mb-2">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <label for="btnClasificacionAccidente" class="form-label">
+                                                                Clasificación de Accidente
+                                                            </label>
+
+                                                            <button id="btnClasificacionAccidente" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clasificacion-accidente-modal">Buscar</button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <textarea class="form-control" id="incidenteTextArea"
+                                                                  rows="3"></textarea>
+                                                    </div>
+
+                                                    <div>
+                                                        <label for="observacionIncidenteTextArea" class="form-label">
+                                                            Observación
+                                                        </label>
+                                                        <textarea class="form-control" id="observacionIncidenteTextArea"
+                                                                  rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                            <div class="col">
+                                                <div>
+                                                    <div class="col-12 mb-2">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <label for="btnTipoLesion" class="form-label">
+                                                                Pérdidas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            </label>
+
+                                                            <button id="btnTipoLesion" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tipo-lesion-modal">Buscar</button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <textarea class="form-control" id="lesionTextArea"
+                                                                  rows="3"></textarea>
+                                                    </div>
+
+                                                    <div >
+                                                        <label for="observacionLesionTextArea" class="form-label">
+                                                            Observación
+                                                        </label>
+                                                        <textarea class="form-control" id="observacionLesionTextArea"
+                                                                  rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div>
+                                    </div> <!-- end card body -->
+                                    
+                                    <div class="card-footer">
+                                        <div class="text-end">
+                                            <button id="agregarButton" class="btn btn-success">Agregar</button>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card -->   
+                            </div> <!-- end col -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Resumen Investigación</h4>
+                                    </div><!-- end card header -->
+
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped-columns table-hover align-middle mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" class="w-25">Factores Organizacionales</th>
+                                                        <th scope="col" class="w-20">Causas Básicas</th>
+                                                        <th scope="col" class="w-15">Causas Inmediatas</th>
+                                                        <th scope="col" class="w-15">Tipo de incidente</th>
+                                                        <th scope="col" class="w-15">Tipo de lesión</th>
+                                                        <th scope="col" class="w-10">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            Deficiencias en la organización preventiva de la empresa respecto a 
+                                                            los instrumentos de preverservación establecidos en la normativa.
+                                                        </td>
+                                                        <td>
+                                                            El trabajador no es capacitado en uso de equipos y elementos de
+                                                            protección personal.
+                                                        </td>
+                                                        <td>Piso en mal estado.</td>
+                                                        <td>
+                                                            - Caídas de personas.<br>
+                                                            - Obs: Se dobla ambos pies.
+                                                        </td>
+                                                        <td>
+                                                            - Otra clase de lesiones.<br>
+                                                            - Obs: Se dobla pie.
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-danger btn-sm"><i class="ri-delete-bin-5-line"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title mb-0">Diagrama</h4>
+                                    </div><!-- end card header -->
+
+                                    <div class="card-body">
+                                        <div class="dropzone">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple="multiple">
+                                            </div>
+                                            <div class="dz-message needsclick">
+                                                <div class="mb-3">
+                                                    <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
+                                                </div>
+
+                                                <h4>Arraste y suelte aquí su diagrama.</h4>
+                                            </div>
+                                        </div>
+
+                                        <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                            <li class="mt-2" id="dropzone-preview-list">
+                                                <!-- This is used as the file preview template -->
+                                                <div class="border rounded">
+                                                    <div class="d-flex p-2">
+                                                        <div class="flex-shrink-0 me-3">
+                                                            <div class="avatar-sm bg-light rounded">
+                                                                <img data-dz-thumbnail class="img-fluid rounded d-block" src="/assets/images/new-document.png" alt="Dropzone-Image" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <div class="pt-1">
+                                                                <h5 class="fs-14 mb-1" data-dz-name>&nbsp;</h5>
+                                                                <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                                                <strong class="error text-danger" data-dz-errormessage></strong>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-shrink-0 ms-3">
+                                                            <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- end dropzon-preview -->
+                                    </div>
+                                    <!-- end card body -->
+                                </div>
+                                <!-- end card -->
+                            </div> <!-- end col -->
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-3">
+                            <button class="btn btn-success">Grabar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="pill-justified-medidas" role="tabpanel">
+                <div class="row g-4">
+                    <div class="col-xxl-4">
+                        <div>
+                            <label class="form-label" for="inputGroupSelect01">Factores ORG</label>
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Seleccione factor</option>
+                                <option value="1">Causa 1</option>
+                                <option value="2">Causa 2</option>
+                                <option value="3">Causa 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xxl-12">
+                        <div>
+                            <textarea class="form-control" id="causaTextArea02"
+                                      rows="1"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xxl-12">
+                        <div>
+                            <label for="lugarTextArea" class="form-label">
+                                Medidas correctivas
+                            </label>
+                            <textarea class="form-control" id="medidasTextArea"
+                                      rows="1"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4">
+                        <div>
+                            <label for="lugarTextArea" class="form-label">
+                                Responsable
+                            </label>
+                            <textarea class="form-control" id="lugarTextArea"
+                                      rows="1"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2">
+                        <div>
+                            <label for="fechaInicioMedidas" class="form-label">
+                                Fecha Inicio
+                            </label>
+                            <input type="date" id="fechaInicioMedidas" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xxl-2">
+                        <div>
+                            <label for="fechaFinMedidas" class="form-label">
+                                Fecha Fin
+                            </label>
+                            <input type="date" id="fechaFinMedidas" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xxl-12">
+                        <div>
+                            <label class="form-label"
+                                   for="docAdjuntos">Adjuntar Documentos</label>
+                            <div id="docAdjuntos" class="card">
+                                <div class="card-body">
+                                    <input type="file"
+                                           class="filepond filepond-input-multiple"
+                                           multiple
+                                           name="filepond"
+                                           data-allow-reorder="true"
+                                           data-max-file-size="3MB"
+                                           data-max-files="4">
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-12 mt-0">
+                        <div>
+                            <label for="medidasObservaciones" class="form-label">
+                                Observaciones
+                            </label>
+                            <textarea class="form-control" id="medidasObservaciones"
+                                      rows="1"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end my-3">
+                        <button class="btn btn-success">Agregar</button>
+                    </div>
+                </div>
+                <hr class="my-2">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Resumen Medidas Correctivas</h4>
+                            </div><!-- end card header -->
+
+                            <div class="card-body">
+
+                                <div class="live-preview">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped-columns table-hover table-nowrap align-middle mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Responsable</th>
+                                                    <th scope="col">Fecha Inicio</th>
+                                                    <th scope="col">Fecha Fin</th>
+                                                    <th scope="col">Factores ORG</th>
+                                                    <th scope="col">Medidas correctivas</th>
+                                                    <th scope="col">Doc. Adjuntos</th>
+                                                    <th scope="col">Estado</th>
+                                                    <th scope="col">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Pedro Pascal Flores</td>
+                                                    <td>20-07-2023</td>
+                                                    <td>04-08-2023</td>
+                                                    <td>
+                                                        - Factor N°1
+                                                    </td>
+                                                    <td>Arreglar escalera</td>
+                                                    <td>imagen.pdf</td>
+                                                    <td>
+                                                        <select class="form-select" id="inputGroupSelect01">
+                                                            <option selected value="enProceso">En proceso</option>
+                                                            <option value="Finalizado">Finalizado</option>
+                                                            <option disabled value="FueraPlazo">Fuera de plazo</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-danger btn-sm"><i class="ri-delete-bin-5-line"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!-- end card-body -->
+                        </div><!-- end card -->
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-3">
+                    <button class="btn btn-success" id="sa-warning-medidas-grabar">Grabar</button>
+                </div>
+            </div>
+            <div class="tab-pane" id="pill-justified-finalizar" role="tabpanel">
+                <div class="d-flex justify-content-around align-items-center">
+                    <button class="btn btn-danger">Cerrar Informe</button>
+                    <button class="btn btn-success">Ver PDF</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- end card-body -->
+</div><!-- end card -->

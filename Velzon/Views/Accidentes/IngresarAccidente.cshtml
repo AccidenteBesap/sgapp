@@ -1,0 +1,1025 @@
+﻿@model Velzon.Models.CompositeModel
+
+@{
+    ViewBag.Title = "Ingresar Accidente";
+    ViewBag.pTitle = "Ingresar Accidente";
+    ViewBag.pageTitle = "Accidentes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!--datatable css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+    <!-- Sweet Alert css-->
+    <link href="~/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="col-lg-12">
+    <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Paso 1</h4>
+            </div><!-- end card header -->
+
+
+            <div class="card-body">
+                <p class="text-muted">Seleccione la empresa donde ocurrió el accidente, el trabajador accidentado y la metodología que utilizará para realizar el reporte.</p>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="mb-3">
+                            <label for="entrada-empresa" class="form-label">Empresa</label>
+                            <select class="form-control" data-choices name="entrada-empresa"
+                                    id="entrada-empresa" onchange="loadTrabajadores()">
+                                <option value="">Seleccione empresa</option>
+                                @if (Model != null && Model.Empresas != null)
+                                {
+                                    @foreach (var mutual in Model.Empresas)
+                                    {
+                                        <option value="@mutual.Rut">
+                                            @mutual.Razon_Social
+                                        </option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="No data available">No data available</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="mb-3">
+                            <label for="entrada-trabajador" class="form-label">Trabajador</label>
+                            <select class="form-control" name="entrada-trabajador"
+                                    id="entrada-trabajador" disabled>
+                                <option value="">Seleccione trabajador</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="mb-3">
+                            <label for="entrada-accidente" class="form-label">Tipo de Accidente</label>
+                            <select class="form-control" data-choices data-choices-search-false name="entrada-accidente"
+                                    id="entrada-accidente">
+                                <option value="">Seleccione accidente</option>
+                            <option value="Accidente CTP">Accidente CTP</option>
+                            <option value="Accidente STP">Accidente STP</option>
+                            <option value="Cuasi Accidente">Cuasi Accidente</option>
+                            <option value="Accidente Grave">Accidente Grave</option>
+                            <option value="Accidente Fatal">Accidente Fatal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="mb-3">
+                            <label for="entrada-metodologia" class="form-label">Metodología</label>
+                            <select class="form-control" data-choices data-choices-search-false name="entrada-metodologia"
+                                    id="entrada-metodologia">
+                                <option value="">Seleccione metodología</option>
+                                <option value="_ModeloCausalidad">Cadena Causal</option>
+                                <option value="_Cuasi">Cuasi Accidente</option>
+                                <option value="_CincoPorques">5 porqués</option>
+                                <option value="_ArbolCausas">Árbol de Causas</option>
+                                <option value="_Libre">Libre</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="text-end">
+                    <button type="submit" id="continuarButton" class="btn btn-primary">Continuar</button>
+                </div>
+            </div>
+    </div>
+</div>
+
+<!-- <div>
+    <partial name="_Libre" />
+</div>-->
+
+<div class="col-lg-12" id="targetDiv">
+</div>
+
+<!-- Modal Formulario Notificación-->
+<div class="modal fade" id="formularioNotificacionModal" tabindex="-1" aria-labelledby="formularioNotificacionModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formularioNotificacionModalLabel">Formulario de Notificación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:void(0);">
+                    <div class="row g-3">
+                        <h5 class="fs-15">Datos Empresa</h5>
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNRazonSocialEmpresa" class="form-label">Razón Social</label>
+                                <input type="text" class="form-control" id="FNRazonSocial" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNRutEmpresa" class="form-label">RUT Empresa</label>
+                                <input type="text" class="form-control" id="FNRutEmpresa" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNDireccionEmpresa" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="FNDireccion" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNRepLegalEmpresa" class="form-label">Representante Legal</label>
+                                <input type="text" class="form-control" id="FNRepLegal" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <h5 class="fs-15">Indentificación Trabajador Fallecido</h5>
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNNombreTrabajador" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="FNNombreTrabajador" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNRutTrabajador" class="form-label">RUT</label>
+                                <input type="text" class="form-control" id="FNRutTrabajador" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNEdadTrabajador" class="form-label">Edad</label>
+                                <input type="text" class="form-control" id="FNEdadTrabajador" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNSexoTrabajador" class="form-label">Sexo</label>
+                                <input type="text" class="form-control" id="FNSexoTrabajador" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNCargoTrabajador" class="form-label">Cargo</label>
+                                <input type="text" class="form-control" id="FNCargoTrabajador" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNDireccionTrabajador" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="FNDireccionTrabajador" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <h5 class="fs-15">Datos del Accidente</h5>
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNFechaAccidente" class="form-label">Fecha del Accidente</label>
+                                <input type="text" class="form-control" id="FNFechaAccidente" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNHoraAccidente" class="form-label">Hora del Accidente</label>
+                                <input type="text" class="form-control" id="FNHoraAccidente" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="FNDireccionAccidente" class="form-label">Dirección del Accidente</label>
+                                <input type="text" class="form-control" id="FNDireccionAccidente" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="FNDescInicialAccidente" class="form-label">Descripción Inicial del Accidente</label>
+                                <input type="text" class="form-control" id="FNDescInicialAccidente" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNFechaDefuncionAccidente" class="form-label">Fecha de Defunción</label>
+                                <input type="text" class="form-control" id="FNFechaDefuncionAccidente" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNLugarDefuncionAccidente" class="form-label">Lugar de Defunción</label>
+                                <input type="text" class="form-control" id="FNLugarDefuncionAccidente" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="FNOrgAdministrador" class="form-label">Organismo Administrador (OA) (Mutual o ISL)</label>
+                                <input type="text" class="form-control" id="FNOrgAdministrador" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="FNRutOrgAdministrador" class="form-label">Identificador Organismo Administrador (RUT OA)</label>
+                                <input type="text" class="form-control" id="FNRutOrgAdministrador" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="FNNombreResponsable" class="form-label">Nombre Responsable Organismo Administrador (RESP OA)</label>
+                                <input type="text" class="form-control" id="FNIdResponsable" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="FNRutResponsable" class="form-label">RUT Responsable Organismo Administrador (RUT RESP OA)</label>
+                                <input type="text" class="form-control" id="FNRutResponsable" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNEmailResponsable" class="form-label">Correo Electrónico Responsable</label>
+                                <input type="email" class="form-control" id="FNEmailResponsable" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNTelefonoResponsable" class="form-label">Teléfono Responsable</label>
+                                <input type="text" class="form-control" id="FNTelefonoResponsable" placeholder="">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-6">
+                            <div>
+                                <label for="FNFechaEmision" class="form-label">Fecha de Emisión</label>
+                                <input type="text" class="form-control" id="FNFechaEmision" placeholder="">
+                            </div>
+                        </div><!--end col-->
+
+                        <div class="col-xxl-12">
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary">Ver PDF</button>
+                                <button class="btn btn-success">Enviar</button>
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Clasificación Accidente -->
+<div id="clasificacion-accidente-modal" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="clasiAccidenteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clasiAccidenteModalLabel">
+                    Seleccione el tipo de accidente
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="clasificacion-accidente-table" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 10px;">
+                            </th>
+                            <th data-ordering="false">Código</th>
+                            <th data-ordering="false">Clasificación del Accidente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1</td>
+                            <td>Caídas de personas</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>2</td>
+                            <td>Caídas de objetos</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>3</td>
+                            <td>Pisadas sobre, choques contra, o golpes por objetos, a excepción de caídas de objetos</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>4</td>
+                            <td>Atrapada por un objeto o entre objetos</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>5</td>
+                            <td>Esfuerzos excesivos o falsos movimientos</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>6</td>
+                            <td>Exposición a, o contacto con, temperaturas extremas</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>7</td>
+                            <td>Exposición a, o contacto con, la corriente eléctrica</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>8</td>
+                            <td>Exposición a, o contacto con, sustancias nocivas o radiaciones</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>9</td>
+                            <td>
+                                Otras formas de accidente, no clasificadas bajo otros epígrafes, incluidos aquellos accidentes
+                                no clasificados por falta de datos suficientes
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>Cerrar</a>
+                <button type="button" class="btn btn-primary ">Seleccionar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal Tipo Lesión -->
+<div id="tipo-lesion-modal" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="tipoLesionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tipoLesionModalLabel">
+                    Seleccione el tipo de lesión
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="tipo-lesion-table" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 10px;">
+                            </th>
+                            <th data-ordering="false">Código</th>
+                            <th data-ordering="false">Tipos de Lesiones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1</td>
+                            <td>Lesiones superficiales y heridas abiertas</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>2</td>
+                            <td>Fracturas</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>3</td>
+                            <td>Luxaciones, esguinces y distensiones</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>4</td>
+                            <td>Amputaciones traumáticas (Incluye en particular la enucleación traumática del ojo)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>5</td>
+                            <td>
+                                Concusiones y lesiones internas (Lesiones provocadas por explosiones, magulladuras, concusiones,
+                                contusiones por aplastamiento, laceraciones, hematomas traumáticos, así como perforaciones, rupturas
+                                y desgarros de órganos internos, etc.)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>6</td>
+                            <td>Quemaduras, corrosiones, escaldaduras y congelación</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>7</td>
+                            <td>Envenenamientos, intoxicaciones e infecciones agudos</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>8</td>
+                            <td>Otras clases de lesiones específicas</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>9</td>
+                            <td>Diversas lesiones no especificadas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>Cerrar</a>
+                <button type="button" class="btn btn-primary ">Seleccionar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal Parte Lesionada -->
+<div id="parte-lesionada-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="parteLesionadaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="parteLesionadaModalLabel">
+                    Seleccione la parte lesionada
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="parte-lesionada-table" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 10px;"></th>
+                            <th data-ordering="false">Código</th>
+                            <th data-ordering="false">Tipos de Lesiones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1</td>
+                            <td>Cabeza</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>2</td>
+                            <td>Cuello, incluidas la médula espinal y las vértebras cervicales</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>3</td>
+                            <td>Espalda, incluidas la médula espinal y las vértebras dorsales</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>4</td>
+                            <td>Torso y órganos internos</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>5</td>
+                            <td>Miembros superiores</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>6</td>
+                            <td> Miembros inferiores</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>7</td>
+                            <td>Todo el cuerpo y sitios anatómicos lesionados múltiples</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>Cerrar</a>
+                <button type="button" class="btn btn-primary ">Seleccionar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal Investigación Causas -->
+<div id="investigacion-causa-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="causasModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="causasModalLabel">
+                    Seleccione la(s) causa(s)
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="parte-lesionada-table" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 10px;"></th>
+                            <th data-ordering="false">Codificación</th>
+                            <th data-ordering="false">Causa</th>
+                            <th data-ordering="false">Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1101</td>
+                            <td>Inexistencia de un programa de prevención de riesgos laborales en la empresa o incongruencia de este con los riesgos presentes</td>
+                            <td>No se evidencia un programa de prevención de riesgos laborales o bien, el programa no considera los riesgos presentes en la empresa</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1102</td>
+                            <td>No se han identificado los peligros y los riesgos no están evaluados</td>
+                            <td>La empresa no ha identificado los peligros y evaluado los riesgos porque no dispone de procedimientos formalizados en un documento que pueda ser auditado o fiscalizado</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1103</td>
+                            <td>Deficiencias en la organización preventiva de la empresa respecto a los instrumentos de prevención establecidos en la normativa</td>
+                            <td>Según corresponda:   No haber constituido o estar sin funcionamiento el Departamento de Prevención de Riesgos Laborales y los Comités Paritarios, No disponer de Reglamentos Internos, Sistema de Gestión de SST, Reglamento Especial de Empresas Contratistas y Registro de Antecedentes,  No cumplimiento de las obligaciones de los reglamentos de instrumentos preventivos (DS 40, 54 y 76)za</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1104</td>
+                            <td>Inexistencia de procedimientos de evaluación y auditoría en el sistema de gestión de riesgos laborales</td>
+                            <td>La empresa no cuenta con sistema de gestión desarrollado en documentos comprobables o bien no tiene procedimientos de auditoría interna para evaluar su gestión respecto a riesgos laborales</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1105</td>
+                            <td>Falta de coordinación entre empresas sobre procedimientos de trabajo seguro (PTS)</td>
+                            <td>Cuando entre dos o más empresas no han acordado un PTS y existen diversas formas de proceder / No hay evidencia de la coordinación</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1106</td>
+                            <td>Inexistencia o deficiencia en la coordinación entre trabajadores para la realización del trabajo. Deficiencias del trabajo en equipo</td>
+                            <td>Existe mala coordinación entre los trabajadores, se detectan ausencia o fallas en el trabajo en equipo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1107</td>
+                            <td>Inexistencia o deficiencias de Procedimiento de Trabajo Seguro (PTS) en la o las empresa(s) del accidente</td>
+                            <td>La o las empresas involucradas no cuenta(n) con PTS, o este presenta características que lo hacen insuficiente, incorrecto o poco claro</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1108</td>
+                            <td>Sistema inexistente, inadecuado o mal aplicado de asignación de tareas</td>
+                            <td>Las tareas se asigna sin una planificación, sin asignación de recursos materiales, equipos, herramientas, sin explicar al trabajador el método de trabajo correcto</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1109</td>
+                            <td>Los trabajadores no participan en la gestión preventiva de la empresa</td>
+                            <td>No se evidencia la participación de los trabajadores, ya sea en consulta con ellos o no se considera su opinión respecto a temas de seguridad</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1110</td>
+                            <td>No considerar las características de los trabajadores para la realización de la tarea o en función de los riesgos</td>
+                            <td>El empleador no considera las capacidades físicas y psicológicas de los trabajadores para la asignación de tareas. No hay evidencias de realización de exámenes pre-ocupacionales y/u ocupacionales que avalen que el trabajador puede realizar una tarea que requiere evaluación de características físicas, dado el riesgo existente, como por ejemplo: exámenes de altura, requisitos de visión, etc.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1111</td>
+                            <td>Política de compras inexistente o inadecuada desde el punto de vista de la prevención para la seguridad</td>
+                            <td>No existe una política establecida que contemple las implicancias de las adquisiciones respecto a temas de seguridad, o la política de adquisiciones existe, pero no incorpora los aspectos relacionados con la salud y seguridad en el trabajo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1112</td>
+                            <td>No existe plan de emergencia o el plan es inadecuado</td>
+                            <td>La empresa no cuenta con un plan de emergencia ante situaciones de riesgo graves, ya sea por situaciones derivadas del trabajo, catástrofes naturales, o cualquier otra condición que ponga en riesgo inminente la vida y salud de los trabajadores. Incluye inexistencia o defectos de plan de emergencias en tránsito de vehículos</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1113</td>
+                            <td>Inexistencia de procedimiento de investigación de accidente</td>
+                            <td>No se evidencia un procedimiento establecido por la empresa para encontrar las causas y evitar la repetición de los accidentes</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                </div>
+                            </th>
+                            <td>1199</td>
+                            <td>Otras causas relativas a la gestión de la prevención</td>
+                            <td>Otras causas relacionadas con Sistema de Gestión en SST no incluida en ítems anteriores</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>Cerrar</a>
+                <button type="button" class="btn btn-primary ">Seleccionar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal Medidas Correctivas -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content modal-dialog-centered">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Seleccione la(s) causa(s)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="width: 10px;">
+                                                <div class="form-check">
+                                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                                                </div>
+                                            </th>
+                                            <th data-ordering="false">Grupo</th>
+                                            <th data-ordering="false">Subgrupo</th>
+                                            <th data-ordering="false">Causa</th>
+                                            <th data-ordering="false">Descripción</th>
+                                            <th data-ordering="false">Codificación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                                </div>
+                                            </th>
+                                            <td>1. Gestión Preventiva de la empresa</td>
+                                            <td> Gestión de la Prevención</td>
+                                            <td>Inexistencia de un programa de prevención de riesgos laborales en la empresa o incongruencia de este con los riesgos presentes</td>
+                                            <td>No se evidencia un programa de prevención de riesgos laborales o bien, el programa no considera los riesgos presentes en la empresa</td>
+                                            <td>1101</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!--datatable js-->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+    <script src="~/assets/js/pages/datatables.init.js"></script>
+
+    <!-- multi.js -->
+    <script src="~/assets/libs/multi.js/multi.min.js"></script>
+    <!-- autocomplete js -->
+    <script src="~/assets/libs/@@tarekraafat/autocomplete.js/autoComplete.min.js"></script>
+
+    <!-- init js -->
+    <script src="~/assets/js/pages/form-advanced.init.js"></script>
+    <!-- input spin init -->
+    <script src="~/assets/js/pages/form-input-spin.init.js"></script>
+    <!-- input flag init -->
+    <script src="~/assets/js/pages/flag-input.init.js"></script>
+
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+
+    <!-- Accidente js -->
+    <script src="~/assets/js/pages/accidente.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#continuarButton").click(function () {
+                console.log("clicked the button")
+                var selectedEmpresa = $("#entrada-empresa").val();
+                console.log(selectedEmpresa);
+                var selectedTrabajador = $("#entrada-trabajador").val();
+                console.log(selectedTrabajador);
+                var selectedValue = $("#entrada-metodologia").val();
+                console.log(selectedValue);
+                var selectedAccidente = $("#entrada-accidente").val();
+                console.log(selectedAccidente);
+
+                // Send the selected value to the server-side action method using AJAX
+                $.ajax({
+                    url: "/Accidentes/LoadPartialView",
+                    type: "POST",
+                    data: {
+                        selectedEmpresa: selectedEmpresa,
+                        selectedTrabajador: selectedTrabajador,
+                        selectedAccidente: selectedAccidente,
+                        selectedValue: selectedValue,
+
+                    },
+                    success: function (result) {
+                        // Update the content of the targetDiv with the received HTML content
+                        $("#targetDiv").html(result);
+
+                        $.getScript("/assets/libs/dropzone/dropzone-min.js")
+                            .done(function () {
+                                console.log("dropzone-min.js loaded.");
+                            })
+                            .fail(function (jqxhr, settings, exception) {
+                                console.error("Failed to load the script:", exception);
+                            });
+
+                        // filepond js
+                        $.getScript("/assets/libs/filepond/filepond.min.js");
+                        $.getScript("/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js");
+                        $.getScript("/assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js");
+                        $.getScript("/assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js");
+                        $.getScript("/assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js");
+
+                        $.getScript("/assets/js/pages/form-file-upload.init.js");
+
+                        // Sweet Alerts js
+                        $.getScript("/assets/libs/sweetalert2/sweetalert2.min.js");
+
+                        // Sweet alert init js
+                        $.getScript("/assets/js/pages/sweetalerts.init.js");
+
+                        if (selectedAccidente === 'Choice 5') { // Value for "Accidente Fatal"
+                            appendDivFatal();
+                        }
+
+                        function appendDivFatal() {
+                            var colContainer = $('#columnaFatal');
+                            var divFatal = $('<div class="row mt-2">' +
+                                '<div class="col-lg-12 mt-2">' +
+                                '<div class="input-group">' +
+                                '<span class="input-group-text">Fecha defunción</span>' +
+                                '<input type="date" class="form-control">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-lg-12 mt-2">' +
+                                '<div class="input-group">' +
+                                '<span class="input-group-text">Hora defunción</span>' +
+                                '<input type="time" class="form-control">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="col-12">' +
+                                '<div class="mt-2">' +
+                                '<label for="lugarTextArea" class="form-label">Lugar de defunción</label>' +
+                                '<textarea class="form-control" id="lugarTextArea" rows="4"></textarea>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>');
+                            colContainer.append(divFatal);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        const addRow = () => {
+            // Get the values from the textarea elements
+            const accidente = document.getElementById("accidentePorque").value;
+            const primerPorQue = document.getElementById("porque1").value;
+            const segundoPorQue = document.getElementById("porque2").value;
+            const tercerPorQue = document.getElementById("porque3").value;
+            const cuartoPorQue = document.getElementById("porque4").value;
+            const quintoPorQue = document.getElementById("porque5").value;
+
+            // Create a new table row
+            const row = document.createElement("tr");
+
+            // Create and populate the table cells
+            const createCell = (text) => {
+                const cell = document.createElement("td");
+                cell.textContent = text;
+                return cell;
+            };
+
+            row.appendChild(createCell(accidente));
+            row.appendChild(createCell(primerPorQue));
+            row.appendChild(createCell(segundoPorQue));
+            row.appendChild(createCell(tercerPorQue));
+            row.appendChild(createCell(cuartoPorQue));
+            row.appendChild(createCell(quintoPorQue));
+
+            // Create the final cell with the specified content
+            const deleteCell = document.createElement("td");
+            const div = document.createElement("div");
+            div.classList.add("hstack", "gap-3", "fs-15", "text-center");
+            const button = document.createElement("button");
+            button.classList.add("btn", "btn-danger", "btn-sm");
+            const icon = document.createElement("i");
+            icon.classList.add("ri-delete-bin-5-line");
+
+            button.appendChild(icon);
+            div.appendChild(button);
+            deleteCell.appendChild(div);
+            row.appendChild(deleteCell);
+
+            // Append the new row to the table body
+            const tableBody = document.getElementById("porqueTableBody");
+            tableBody.appendChild(row);
+
+            button.addEventListener("click", () => {
+                // Get the parent row and remove it
+                const parentRow = button.closest("tr");
+                parentRow.remove();
+            });
+
+            // Find the last non-empty cell from left to right
+            let lastNonEmptyCell;
+            const cells = row.getElementsByTagName("td");
+            for (let i = cells.length - 1; i >= 0; i--) {
+                const cellValue = cells[i].textContent.trim();
+                if (cellValue !== "") {
+                    lastNonEmptyCell = cellValue;
+                    break;
+                }
+            }
+
+            // Log the value of the last non-empty cell
+            if (lastNonEmptyCell) {
+                console.log("Last non-empty cell value:", lastNonEmptyCell);
+                const selectElement = document.getElementById("causasMedidasCincoPorques");
+                const optionElement = document.createElement("option");
+                optionElement.textContent = lastNonEmptyCell;
+                selectElement.appendChild(optionElement);
+            }
+        };
+    </script>
+}
