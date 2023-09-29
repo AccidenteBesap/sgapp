@@ -47,178 +47,181 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="pill-justified-accidentado" role="tabpanel">
-                <div class="row g-3">
-                    <h6 class="mt-4">Información del accidentado</h6>
-                    <hr class="mt-0 mb-1" />
-                    <div class="col-lg-4">
-                        <div class="row align-items-center g-3">
+                <form action="/Accidentes/InsertAccidente" method="post">
+                    <div class="row g-3">
+                        <h6 class="mt-4">Información del accidentado</h6>
+                        <hr class="mt-0 mb-1" />
+                        <div class="col-lg-4">
+                            <div class="row align-items-center g-3">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="TrabajadorEmpresa">Empresa</label>
+                                    <input type="text" class="form-control" id="TrabajadorEmpresa" value="@Model.TrabajadorEmpresa" name="TrabajadorEmpresa"
+                                           aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row align-items-center g-3">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="TrabajadorNombre">Trabajador</label>
+                                    <input type="text" class="form-control" id="TrabajadorNombre" name="TrabajadorNombre" value="@Model.TrabajadorNombre @Model.TrabajadorApellidoPaterno @Model.TrabajadorApellidoMaterno"
+                                           aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row align-items-center g-3">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="TrabajadorRut">RUT</label>
+                                    <input type="text" class="form-control" id="TrabajadorRut" name="TrabajadorRut" value="@Model.TrabajadorRut"
+                                           aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row align-items-center g-3">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="TrabajadorCargo">Cargo</label>
+                                    <input type="text" class="form-control" id="TrabajadorCargo" name="TrabajadorCargo" value="@Model.TrabajadorCargo"
+                                           aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row align-items-center g-3">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="TrabajadorCentroTrabajo">Centro de Trabajo</label>
+                                    <input type="text" class="form-control" id="TrabajadorCentroTrabajo" name="TrabajadorCentroTrabajo" value="@Model.TrabajadorCentroTrabajo"
+                                           aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default">
+                                    <input type="hidden" name="TrabajadorId" value="@Model.TrabajadorId" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row align-items-center g-3">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="TrabajadorFechaIngreso">Fecha de Ingreso</label>
+                                    <input type="text" class="form-control" id="TrabajadorFechaIngreso" name="TrabajadorFechaIngreso" value="@Model.TrabajadorFechaIngreso">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row align-items-center g-3">
+                                <div>
+                                    <label for="supervisorTextArea" class="form-label">
+                                        Supervisor directo
+                                    </label>
+                                    <textarea class="form-control" id="supervisorTextArea" name="supervisorTextArea"
+                                              rows="1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-3">
+                        <h6 class="mt-4">Información del accidente</h6>
+                        <hr class="mt-0 mb-1" />
+                        <div class="col-lg-4">
                             <div class="input-group">
-                                <label class="input-group-text" for="TrabajadorEmpresa">Empresa</label>
-                                <input type="text" class="form-control" id="TrabajadorEmpresa" value="@Model.TrabajadorEmpresa"
+                                <label class="input-group-text" for="TrabajadorTipoAccidente">Tipo Accidente</label>
+                                <input type="text" class="form-control" id="TrabajadorTipoAccidente" name="TrabajadorTipoAccidente" value="@Model.TrabajadorTipoAccidente"
                                        aria-label="Sizing example input"
                                        aria-describedby="inputGroup-sizing-default">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row align-items-center g-3">
+                        <div class="col-lg-3">
                             <div class="input-group">
-                                <label class="input-group-text" for="TrabajadorNombre">Trabajador</label>
-                                <input type="text" class="form-control" id="TrabajadorNombre" value="@Model.TrabajadorNombre @Model.TrabajadorApellidoPaterno @Model.TrabajadorApellidoMaterno"
-                                       aria-label="Sizing example input"
-                                       aria-describedby="inputGroup-sizing-default">
+                                <span class="input-group-text">Fecha</span>
+                                <input type="date" class="form-control" id="TrabajadorAccidenteFecha" name="TrabajadorAccidenteFecha">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row align-items-center g-3">
+                        <div class="col-lg-3">
                             <div class="input-group">
-                                <label class="input-group-text" for="TrabajadorRut">RUT</label>
-                                <input type="text" class="form-control" id="TrabajadorRut" value="@Model.TrabajadorRut"
-                                       aria-label="Sizing example input"
-                                       aria-describedby="inputGroup-sizing-default">
+                                <span class="input-group-text">Hora</span>
+                                <input type="time" class="form-control" id="TrabajadorAccidenteHora" name="TrabajadorAccidenteHora">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row align-items-center g-3">
-                            <div class="input-group">
-                                <label class="input-group-text" for="TrabajadorCargo">Cargo</label>
-                                <input type="text" class="form-control" id="TrabajadorCargo" value="@Model.TrabajadorCargo"
-                                       aria-label="Sizing example input"
-                                       aria-describedby="inputGroup-sizing-default">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row align-items-center g-3">
-                            <div class="input-group">
-                                <label class="input-group-text" for="TrabajadorCentroTrabajo">Centro de Trabajo</label>
-                                <input type="text" class="form-control" id="TrabajadorCentroTrabajo" value="@Model.TrabajadorCentroTrabajo"
-                                       aria-label="Sizing example input"
-                                       aria-describedby="inputGroup-sizing-default">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row align-items-center g-3">
-                            <div class="input-group">
-                                <label class="input-group-text" for="TrabajadorFechaIngreso">Fecha de Ingreso</label>
-                                <input type="text" class="form-control" id="TrabajadorFechaIngreso" value="@Model.TrabajadorFechaIngreso">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row align-items-center g-3">
+                        <div class="col-lg-12">
                             <div>
-                                <label for="supervisorTextArea" class="form-label">
-                                    Supervisor directo
+                                <label for="medidasTextArea" class="form-label">
+                                    Medidas inmediatas adoptadas
                                 </label>
-                                <textarea class="form-control" id="supervisorTextArea"
-                                          rows="1"></textarea>
+                                <textarea class="form-control" id="medidasTextArea" name="medidasTextArea"
+                                          rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div>
+                                <label for="lugarTextArea" class="form-label">
+                                    Lugar del accidente
+                                </label>
+                                <textarea class="form-control" id="lugarTextArea" name="lugarTextArea"
+                                          rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div>
+                                <label for="lugarTextArea" class="form-label">
+                                    Consecuencia del accidente
+                                </label>
+                                <textarea class="form-control" id="consecuenciaTextArea" name="consecuenciaTextArea"
+                                          rows="2"></textarea>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row g-3 mt-3">
-                    <h6 class="mt-4">Información del accidente</h6>
-                    <hr class="mt-0 mb-1" />
-                    <div class="col-lg-4">
-                        <div class="input-group">
-                            <label class="input-group-text" for="TrabajadorTipoAccidente">Tipo Accidente</label>
-                            <input type="text" class="form-control" id="TrabajadorTipoAccidente" value="@Model.TrabajadorTipoAccidente"
-                                   aria-label="Sizing example input"
-                                   aria-describedby="inputGroup-sizing-default">
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="input-group">
-                            <span class="input-group-text">Fecha</span>
-                            <input type="date" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="input-group">
-                            <span class="input-group-text">Hora</span>
-                            <input type="time" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div>
-                            <label for="medidasTextArea" class="form-label">
-                                Medidas inmediatas adoptadas
-                            </label>
-                            <textarea class="form-control" id="medidasTextArea"
-                                      rows="2"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div>
-                            <label for="lugarTextArea" class="form-label">
-                                Lugar del accidente
-                            </label>
-                            <textarea class="form-control" id="lugarTextArea"
-                                      rows="2"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div>
-                            <label for="lugarTextArea" class="form-label">
-                                Consecuencia del accidente
-                            </label>
-                            <textarea class="form-control" id="lugarTextArea"
-                                      rows="2"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row g-3 mt-3" id="columnaFatal">
-                    <h6 class="mt-4">Adjuntar Documentos</h6>
-                    <hr class="mt-0 mb-1" />
-                    <div class="col-lg-6">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <label class="form-label" for="subirFNotificacion">Formulario de Notificación</label>
-                            <a class="btn btn-outline-primary" href="https://www.isl.gob.cl/wp-content/uploads/2018/08/Formulario_Notificacion_Accidente_Fatal_y_Grave.pdf" role="button">Descargar Formulario</a>
-                        </div>
-
-                        <div id="subirFNotificacion" class="card">
-                            <div class="card-body">
-                                <input type="file"
-                                       class="filepond filepond-input-multiple"
-                                       multiple
-                                       name="filepond"
-                                       data-allow-reorder="true"
-                                       data-max-file-size="3MB"
-                                       data-max-files="4">
+                    <div class="row g-3 mt-3" id="columnaFatal">
+                        <h6 class="mt-4">Adjuntar Documentos</h6>
+                        <hr class="mt-0 mb-1" />
+                        <div class="col-lg-6">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label class="form-label" for="subirFNotificacion">Formulario de Notificación</label>
+                                <a class="btn btn-outline-primary" href="https://www.isl.gob.cl/wp-content/uploads/2018/08/Formulario_Notificacion_Accidente_Fatal_y_Grave.pdf" role="button">Descargar Formulario</a>
                             </div>
-                            <!-- end card body -->
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <label class="form-label" for="subirDiat">DIAT</label>
-                            <a class="btn btn-outline-primary" href="https://www.isl.gob.cl/wp-content/uploads/2011/03/DIAT.pdf" role="button">Descargar DIAT</a>
-                        </div>
 
-                        <div id="subirDiat" class="card">
-                            <div class="card-body">
-                                <input type="file"
-                                       class="filepond filepond-input-multiple"
-                                       multiple
-                                       name="filepond"
-                                       data-allow-reorder="true"
-                                       data-max-file-size="3MB"
-                                       data-max-files="4">
+                            <div id="subirFNotificacion" class="card">
+                                <div class="card-body">
+                                    <input type="file"
+                                           class="filepond filepond-input-multiple"
+                                           multiple
+                                           name="filepond"
+                                           data-allow-reorder="true"
+                                           data-max-file-size="3MB"
+                                           data-max-files="4">
+                                </div>
+                                <!-- end card body -->
                             </div>
-                            <!-- end card body -->
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <label class="form-label" for="subirDiat">DIAT</label>
+                                <a class="btn btn-outline-primary" href="https://www.isl.gob.cl/wp-content/uploads/2011/03/DIAT.pdf" role="button">Descargar DIAT</a>
+                            </div>
+
+                            <div id="subirDiat" class="card">
+                                <div class="card-body">
+                                    <input type="file"
+                                           class="filepond filepond-input-multiple"
+                                           multiple
+                                           name="filepond"
+                                           data-allow-reorder="true"
+                                           data-max-file-size="3MB"
+                                           data-max-files="4">
+                                </div>
+                                <!-- end card body -->
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="d-flex justify-content-end mt-3">
-                    <button class="btn btn-success">Grabar</button>
-                </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="submit" class="btn btn-success">Grabar</button>
+                    </div>
+                </form>
             </div>
             <div class="tab-pane" id="pill-justified-antecedentes" role="tabpanel">
                 <form>

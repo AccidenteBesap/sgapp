@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,6 +41,64 @@ namespace Velzon.Controllers
             return View(compositeModel);
         }
 
+        [HttpPost]
+        public IActionResult InsertAccidente(
+            string TrabajadorEmpresa,
+            int TrabajadorId,
+            string TrabajadorNombre,
+            string TrabajadorRut,
+            string TrabajadorCargo,
+            string TrabajadorCentroTrabajo,
+            DateOnly TrabajadorFechaIngreso,
+            string supervisorTextArea,
+            string TrabajadorTipoAccidente,
+            DateOnly TrabajadorAccidenteFecha,
+            TimeSpan TrabajadorAccidenteHora,
+            string medidasTextArea,
+            string lugarTextArea,
+            string consecuenciaTextArea
+            )
+        {
+            try
+            {
+                // Create a new Mutual object with the data from the form
+                var newAccidente = new Accidente
+                {
+                    Empresa = TrabajadorEmpresa,
+                    Trabajador = TrabajadorNombre,
+                    Trabajador_Id = TrabajadorId,
+                    Rut = TrabajadorRut,
+                    Cargo = TrabajadorCargo,
+                    Centro_Trabajo = TrabajadorCentroTrabajo,
+                    Fecha_Ingreso = TrabajadorFechaIngreso,
+                    Supervisor = supervisorTextArea,
+                    Tipo_Accidente = TrabajadorTipoAccidente,
+                    Fecha_Accidente = TrabajadorAccidenteFecha,
+                    Hora_Accidente = TrabajadorAccidenteHora,
+                    Medidas_Adoptadas = medidasTextArea,
+                    Lugar_Accidente = lugarTextArea,
+                    Consecuencia_Accidente = consecuenciaTextArea,
+                    Formulario_Notificacion = null, // byte array, can be set to null
+                    DIAT = null, // byte array, can be set to null
+                    Fecha_Defuncion = null, // DateTime, can be set to null
+                    Hora_Defuncion = null, // TimeSpan, can be set to null
+                    Lugar_Defuncion = string.Empty
+                };
+
+                // Add the new Mutual object to the DbContext
+                _dataFetchService.AddAccidente(newAccidente);
+
+                Log.Information("Added row to accidentes table");
+
+                // Redirect to a success page or perform any desired action
+                return RedirectToAction("IngresarAccidente", "Accidentes"); // Redirect to Datos/Mutual
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error adding data to the database: {ex.Message}");
+            }
+        }
+
         [ActionName("Resumen")]
         public IActionResult Reporte()
         {
@@ -58,6 +117,7 @@ namespace Velzon.Controllers
             var viewModel = new ArbolCausasViewModel
             {
                 TrabajadorEmpresa = empresaData?.Razon_Social ?? string.Empty,
+                TrabajadorId = trabajadorData.Id,
                 TrabajadorNombre = trabajadorData?.Nombres ?? string.Empty,
                 TrabajadorApellidoPaterno = trabajadorData?.Paterno ?? string.Empty,
                 TrabajadorApellidoMaterno = trabajadorData?.Materno ?? string.Empty,

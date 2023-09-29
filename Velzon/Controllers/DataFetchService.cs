@@ -256,5 +256,26 @@ namespace Velzon.Services
                 throw; // Rethrow the exception for now; you may want to handle it differently.
             }
         }
+
+        public void AddAccidente(Accidente newAccidente)
+        {
+            try
+            {
+                // Add the newEmpresa object to the DbContext
+                _context.accidentes.Add(newAccidente);
+
+                // Save the changes to the database
+                _context.SaveChanges();
+
+                Log.Information("Added row to accidentes table");
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions here as needed.
+                // You can log the error and return a default model or an error view.
+                // Logging and error handling should be adjusted to your application's requirements.
+                throw; // Rethrow the exception for now; you may want to handle it differently.
+            }
+        }
     }
 }

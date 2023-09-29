@@ -22,4 +22,6 @@ public class ApplicationDbContext : DbContext
     public DbSet<Contrato> contrato { get; set; }
 
     public DbSet<Trabajador> trabajadores { get; set; }
+
+    public DbSet<Accidente> accidentes { get; set; }
 }

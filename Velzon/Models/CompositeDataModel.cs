@@ -13,6 +13,7 @@ namespace Velzon.Models
         public List<RegimenTrabajo> Regimen_Trabajos { get; set; }
         public List<Contrato> Contratos { get; set; }
         public List<Trabajador> Trabajadores { get; set; }
+        public List<Accidente> Accidentes { get; set; }
 
         // Expose Regions directly from ChileData
         public List<RegionModel> Regions => ChileData?.Regions;
